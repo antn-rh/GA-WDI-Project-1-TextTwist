@@ -1,0 +1,22 @@
+body {
+  background-color: rgba(100, 200, 255, .5);
+}
+
+#header {
+  background-color: rgba(0, 100, 255, .5);
+  margin: 0 auto;
+  text-align: center;
+}
+#letters {
+  background-color: rgba(0, 100, 255, .5);
+  position: ;
+  width: 200px;
+  height: 200px;
+}
+#wordsList {
+  background-color: rgba(0, 100, 255, .5);
+  position: ;
+  float: right;
+  width: 200px;
+  height: 200px;
+}
