@@ -10,6 +10,7 @@ body {
 #letters {
   background-color: rgba(0, 100, 255, .5);
   position: ;
+  float: left;
   width: 200px;
   height: 200px;
 }
