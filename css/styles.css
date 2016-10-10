@@ -55,7 +55,7 @@ p {
   width: 40%;
   margin: 0 auto;
 }
-#div3 {
+#completed {
   font-size: 20px;
   position: relative;
   background-color: rgba(200, 200, 255, .5);
@@ -68,6 +68,6 @@ p {
 #scramble {
   font-size: 40px;
 }
-#completed {
+#completeTitle {
   font-size: 30px;
 }
