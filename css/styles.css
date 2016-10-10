@@ -2,10 +2,6 @@ body {
   font-family: futura;
   background-color: rgba(0, 150, 255, 1);
 }
-img {
-  border-radius: 20px;
-  margin: 20px auto;
-}
 div {
   border: 1px solid black;
   border-radius: 8px;
