@@ -26,14 +26,14 @@ li {
 
 
 #name {
-  font-size: 50px;
+  font-size: 40px;
   margin: 20px auto;
 }
 #instructionsTitle {
-  font-size: 30px;
+  font-size: 20px;
 }
 #instructions {
-  font-size: 20px;
+  font-size: 15px;
   margin: 0 auto;
 }
 
@@ -59,7 +59,7 @@ li {
   margin: 0 auto;
 }
 #completed {
-  font-size: 20px;
+  font-size: 15px;
   position: relative;
   background-color: rgba(200, 200, 255, .5);
   text-align: center;
@@ -73,4 +73,10 @@ li {
 }
 #completeTitle {
   font-size: 30px;
+}
+#input1 {
+  margin: 20px;
+}
+#wordList {
+  columns: 100px 2;
 }

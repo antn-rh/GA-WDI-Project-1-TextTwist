@@ -1,9 +1,3 @@
-  var arraySolutions = ['ADD', 'ADE', 'AND', 'DAD', 'DAM', 'DEN', 'END', 'MAD', 'MAN', 'MEN', 'AMEN', 'DAME', 'DAMN', 'DEAD', 'DEAN', 'MADE', 'MANE', 'MEAD', 'MEAN','MEND', 'NAME', 'AMEND', 'NAMED', 'DAMNED', 'DEMAND', 'MADDEN'];
-
-  var scramble = 'N E D M A D';
-
-  var guessedCorrect = [];
-
 $(document).ready(function() {
 
   // appends scramble upon document load
@@ -13,8 +7,8 @@ $(document).ready(function() {
 
   arraySolutions.forEach(function(word) {
     var numChar = word.length;
-    var spots = '_ '.repeat(numChar);
-    $('#wordList').append('<li>' + spots + '</li>');
+    var spots = ' _ '.repeat(numChar);
+    $('#wordList').append('<li>' + spots +'</li>');
   });
 
   // checks words across arraySolutions
@@ -22,8 +16,9 @@ $(document).ready(function() {
     var choice = $('#input1').val().toUpperCase().replace(/\s/g, '');
     for(var i = 0; i < arraySolutions.length; i++) {
       if(choice == arraySolutions[i]) {
-        $('#wordList').append('<li>' + choice + '</li>');
+        $('li').eq(i).html(choice);
         guessedCorrect.push(choice);
+        setTimeout(winGame, 100);
         return;
       }
       for(var j = 0; j < guessedCorrect.length; j++) {
@@ -35,7 +30,8 @@ $(document).ready(function() {
     }
     $('#tryAgain').html("Invalid word. Try again!")
   }
-  // runs checkWord upon releasing ENTER GXkey
+
+  // runs checkWord upon releasing ENTER key
   $('#input1').keyup(function(event) {
     if(event.keyCode == 13) {
       $('#tryAgain').html("");
@@ -43,6 +39,12 @@ $(document).ready(function() {
       $('#input1').val("");
     }
   });
+
+  function winGame() {
+    if(guessedCorrect.length == arraySolutions.length) {
+      alert('Congratulations! You finished this round!');
+    }
+  }
 
 // end of document.ready function
 });
