@@ -1,4 +1,4 @@
-  var arraySolutions = ['ADD', 'ADE', 'AND', 'DAD', 'DAM', 'DEN', 'END', 'MAD', 'MAN', 'MEN', 'AMEN', 'DAME', 'DAMN', 'DEAD', 'DEAN', 'MADE', 'MANE', 'MEAD', 'MEAN', 'MEND', 'NAME', 'AMEND', 'NAMED', 'DAMNED', 'DEMAND', 'MADDEN'];
+  var arraySolutions = ['ADD', 'ADE', 'AND', 'DAD', 'DAM', 'DEN', 'END', 'MAD', 'MAN', 'MEN', 'AMEN', 'DAME', 'DAMN', 'DEAD', 'DEAN', 'MADE', 'MANE', 'MEAD', 'MEAN','MEND', 'NAME', 'AMEND', 'NAMED', 'DAMNED', 'DEMAND', 'MADDEN'];
 
   var scramble = 'N E D M A D';
 
@@ -6,23 +6,16 @@
 
 $(document).ready(function() {
 
-  // arrays for solutions, 6 letter scramble, guesses
-  // var arraySolutions = ['ADD', 'ADE', 'AND', 'DAD', 'DAM', 'DEN', 'END', 'MAD', 'MAN', 'MEN', 'AMEN', 'DAME', 'DAMN', 'DEAD', 'DEAN', 'MADE', 'MANE', 'MEAD', 'MEAN', 'MEND', 'NAME', 'AMEND', 'NAMED', 'DAMNED', 'DEMAND', 'MADDEN'];
-
-  // var scramble = 'N E D M A D';
-  //
-  // var guessedCorrect = [];
-
   // appends scramble upon document load
   $(function() {
     $('#scramble').append(scramble);
   });
 
-  // arraySolutions.forEach(function(word) {
-  //   var numChar = word.length;
-  //   var spots = '_ ' * numChar;
-  //   $('#wordList').append('<li>' + spots + '</li>');
-  // });
+  arraySolutions.forEach(function(word) {
+    var numChar = word.length;
+    var spots = '_ '.repeat(numChar);
+    $('#wordList').append('<li>' + spots + '</li>');
+  });
 
   // checks words across arraySolutions
   function checkWord() {
@@ -36,16 +29,16 @@ $(document).ready(function() {
       for(var j = 0; j < guessedCorrect.length; j++) {
         if(choice == guessedCorrect[j]) {
           $('#tryAgain').html("You already guessed this word. Try again!")
-          return null;
+          return;
         }
       }
     }
     $('#tryAgain').html("Invalid word. Try again!")
   }
-  // word already tuped function
-  // runs checkWord upon releasing ENTER key
+  // runs checkWord upon releasing ENTER GXkey
   $('#input1').keyup(function(event) {
-    if(event.which == 13) {
+    if(event.keyCode == 13) {
+      $('#tryAgain').html("");
       checkWord();
       $('#input1').val("");
     }
