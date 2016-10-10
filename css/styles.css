@@ -34,7 +34,7 @@ p {
   margin: 0 auto;
 }
 
-#div1 {
+#intro {
   background-color: rgba(200, 200, 255, .5);
   text-align: center;
   box-shadow: 5px 5px 5px rgba(40, 40, 40, 0.5);;
@@ -46,7 +46,7 @@ p {
   width: 80%;
   margin: 0 auto;
 }*/
-#div2 {
+#typing {
   position: relative;
   background-color: rgba(200, 200, 255, .5);
   text-align: center;
