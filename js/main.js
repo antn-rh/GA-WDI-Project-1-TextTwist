@@ -15,23 +15,23 @@ $(function() {
 
 // checks words across arraySolutions
 function checkWord() {
-  console.log($('#input1').val().toUpperCase())
+  var choice = $('#input1').val().toUpperCase().replace(/\s/g, '');
   for(var i = 0; i < arraySolutions.length; i++) {
     console.log(arraySolutions[i]);
-    if($('#input1').val().toUpperCase() == arraySolutions[i]) {
-      $('#completed').append($('#input1').val());
-      guessedCorrect.push(this);
+    if(choice == arraySolutions[i]) {
+      $('#wordList').append('<li>' + choice + '</li>');
+      guessedCorrect.push(choice);
       return;
     }
   }
   $('#tryAgain').html("Invalid Word. Try Again!")
 }
-
+// word already tuped function
 // runs checkWord upon releasing ENTER key
 $('#input1').keyup(function(event) {
   if(event.which == 13) {
     checkWord();
-    $('#input1').val(" ");
+    $('#input1').val("");
   }
 });
 
