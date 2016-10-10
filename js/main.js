@@ -1,7 +1,21 @@
 console.log('connected');
 
-var arraySolutions = ['add', 'ade', 'and', 'dad', 'dam', 'den', 'end', 'mad', 'man', 'men', 'amen', 'dame', 'damn', 'dead', 'dean', 'made', 'mane', 'mead', 'mean', 'mend', 'name', 'amend', 'named', 'damned', 'demand', 'madden'];
+var arraySolutions = ['ADD', 'ADE', 'AND', 'DAD', 'DAM', 'DEN', 'END', 'MAD', 'MAN', 'MEN', 'AMEN', 'DAME', 'DAMN', 'DEAD', 'DEAN', 'MADE', 'MANE', 'MEAD', 'MEAN', 'MEND', 'NAME', 'AMEND', 'NAMED', 'DAMNED', 'DEMAND', 'MADDEN'];
 
-var scramble = 'nedmad';
+var scramble = 'N E D M A D';
 
-var guessedCorrect = []; 
+var guessedCorrect = [];
+
+$(function() {
+  $('#scramble').append(scramble);
+});
+
+$('#input').keyup(function(event) {
+  if(event.keyCode == 13) {
+    $('#input').click(checkWord);
+  }
+});
+
+function checkWord(words) {
+  
+}
