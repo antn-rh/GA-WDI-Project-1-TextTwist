@@ -43,7 +43,7 @@ $(document).ready(function() {
     }
   });
 
-  // shuffler
+  shuffler
   $('#input1').keyup(function(event) {
     if(event.keyCode == 32) {
       shuffler();
@@ -52,7 +52,7 @@ $(document).ready(function() {
 
   function shuffler() {
     var a = scramble.split(" ");
-    var newScramble = []
+    var newScramble = [];
     var aLength = a.length;
     for(var i = 0; i < aLength; i++) {
       var j = Math.floor(Math.random() * a.length);
@@ -61,10 +61,10 @@ $(document).ready(function() {
       a = a.splice(i, 1);
     }
     var newScramble = newScramble.join(" ");
-  }
     console.log(newScramble);
     $('#scramble').html(newScramble);
-  
+  }
+
   // winGame function checks array length bc arrays can't be equal to each other
   function winGame() {
     if(guessedCorrect.length == arraySolutions.length) {
