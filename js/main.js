@@ -65,7 +65,7 @@ $(document).ready(function() {
   });
 
   function shuffler() {
-    var strSplit = scramble.split(" ");
+    var strSplit = roundScramble.split(" ");
     var newScramble = [];
     var strLength = strSplit.length;
     for(var i = 0; i < strLength; i++) {
@@ -75,7 +75,7 @@ $(document).ready(function() {
       strSplit.splice(j, 1);
     }
       var newScramble = newScramble.join(" ");
-      console.log(newScramble);
+      // console.log(newScramble);
       $('#scramble').html(newScramble);
       $('#input1').val("");
     }
