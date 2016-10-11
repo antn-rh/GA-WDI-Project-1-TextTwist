@@ -5,6 +5,7 @@ $(document).ready(function() {
     $('#scramble').append(scramble);
   });
 
+  // creates underscore marks according to number of letters per word
   arraySolutions.forEach(function(word) {
     var numChar = word.length;
     var spots = ' _ '.repeat(numChar);
@@ -21,6 +22,7 @@ $(document).ready(function() {
         setTimeout(winGame, 100);
         return;
       }
+  // second for loop to check if choice == guessedCorrect
       for(var j = 0; j < guessedCorrect.length; j++) {
         if(choice == guessedCorrect[j]) {
           $('#tryAgain').html("You already guessed this word. Try again!")
@@ -34,12 +36,36 @@ $(document).ready(function() {
   // runs checkWord upon releasing ENTER key
   $('#input1').keyup(function(event) {
     if(event.keyCode == 13) {
+      // clear tryAgain html before checkWord()
       $('#tryAgain').html("");
       checkWord();
       $('#input1').val("");
     }
   });
 
+  // shuffler
+  $('#input1').keyup(function(event) {
+    if(event.keyCode == 32) {
+      shuffler();
+    }
+  });
+
+  function shuffler() {
+    var a = scramble.split(" ");
+    var newScramble = []
+    var aLength = a.length;
+    for(var i = 0; i < aLength; i++) {
+      var j = Math.floor(Math.random() * a.length);
+      newScramble.push(a[j]);
+      //array.splice(start, deleteCount[, item1[, item2[, ...]]])
+      a = a.splice(i, 1);
+    }
+    var newScramble = a.join(" ");
+  }
+    console.log(newScramble);
+    $('#scramble').html(newScramble);
+  }
+  // winGame function checks array length bc arrays can't be equal to each other
   function winGame() {
     if(guessedCorrect.length == arraySolutions.length) {
       alert('Congratulations! You finished this round!');

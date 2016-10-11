@@ -4,3 +4,7 @@ var arraySolutions = ['ADD', 'ADE', 'AND', 'DAD', 'DAM', 'DEN', 'END', 'MAD', 'M
 var scramble = 'N E D M A D';
 
 var guessedCorrect = [];
+
+// ['HER', 'HUE', 'HUT', 'LET', 'RET', 'RUE', 'RUT', 'THE', 'HURL', 'HURT', 'LURE', 'LUTE', 'RULE', 'TRUE', 'HURTLE']
+//
+// 'L E T R H U';
