@@ -61,9 +61,9 @@ $(document).ready(function() {
       a = a.splice(i, 1);
     }
     var newScramble = newScramble.join(" ");
-  }
     console.log(newScramble);
     $('#scramble').html(newScramble);
+  }
 
   // winGame function checks array length bc arrays can't be equal to each other
   function winGame() {
