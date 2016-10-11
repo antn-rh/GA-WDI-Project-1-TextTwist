@@ -43,7 +43,7 @@ $(document).ready(function() {
     }
   });
 
-  shuffler
+  // shuffler
   $('#input1').keyup(function(event) {
     if(event.keyCode == 32) {
       shuffler();
