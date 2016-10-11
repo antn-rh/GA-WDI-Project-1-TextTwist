@@ -52,7 +52,7 @@ $(document).ready(function() {
 
   function shuffler() {
     var a = scramble.split(" ");
-    var newScramble = []
+    var newScramble = [];
     var aLength = a.length;
     for(var i = 0; i < aLength; i++) {
       var j = Math.floor(Math.random() * a.length);
@@ -60,11 +60,11 @@ $(document).ready(function() {
       //array.splice(start, deleteCount[, item1[, item2[, ...]]])
       a = a.splice(i, 1);
     }
-    var newScramble = a.join(" ");
+    var newScramble = newScramble.join(" ");
   }
     console.log(newScramble);
     $('#scramble').html(newScramble);
-  }
+
   // winGame function checks array length bc arrays can't be equal to each other
   function winGame() {
     if(guessedCorrect.length == arraySolutions.length) {
