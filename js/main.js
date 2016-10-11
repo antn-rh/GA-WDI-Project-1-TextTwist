@@ -2,15 +2,28 @@ $(document).ready(function() {
 
   // appends scramble upon document load
   $(function() {
-    $('#scramble').append(scramble);
+    $('#scramble').append(roundPicker());
   });
 
+  function roundPicker () {
+    var randomRound = Math.floor(Math.random() * games.length);
+    var roundScramble = games[randomRound].scramble;
+    var roundList = games[randomRound].solutions;
+    $('#scramble').append(roundScramble);
+    // games.solutions.forEach(function(word) {
+    //   var numChar = word.length;
+    //   var spots = ' _ '.repeat(numChar);
+    //   $('#wordList').append('<li>' + spots +'</li>');
+    // });
+    games.splice([randomRound], 1);
+  }
+
   // creates underscore marks according to number of letters per word
-  arraySolutions.forEach(function(word) {
-    var numChar = word.length;
-    var spots = ' _ '.repeat(numChar);
-    $('#wordList').append('<li>' + spots +'</li>');
-  });
+  // arraySolutions.forEach(function(word) {
+  //   var numChar = word.length;
+  //   var spots = ' _ '.repeat(numChar);
+  //   $('#wordList').append('<li>' + spots +'</li>');
+  // });
 
   // checks words across arraySolutions
   function checkWord() {
@@ -51,19 +64,20 @@ $(document).ready(function() {
   });
 
   function shuffler() {
-    var a = scramble.split(" ");
+    var strSplit = scramble.split(" ");
     var newScramble = [];
-    var aLength = a.length;
-    for(var i = 0; i < aLength; i++) {
-      var j = Math.floor(Math.random() * a.length);
-      newScramble.push(a[j]);
+    var strLength = strSplit.length;
+    for(var i = 0; i < strLength; i++) {
+      var j = Math.floor(Math.random() * strSplit.length);
+      newScramble.push(strSplit[j]);
       //array.splice(start, deleteCount[, item1[, item2[, ...]]])
-      a = a.splice(i, 1);
+      strSplit.splice(j, 1);
     }
-    var newScramble = newScramble.join(" ");
-    console.log(newScramble);
-    $('#scramble').html(newScramble);
-  }
+      var newScramble = newScramble.join(" ");
+      console.log(newScramble);
+      $('#scramble').html(newScramble);
+      $('#input1').val("");
+    }
 
   // winGame function checks array length bc arrays can't be equal to each other
   function winGame() {
