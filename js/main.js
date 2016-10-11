@@ -5,31 +5,32 @@ $(document).ready(function() {
     $('#scramble').append(roundPicker());
   });
 
+  var randomRound = Math.floor(Math.random() * games.length);
+  var roundScramble = games[randomRound].scramble;
+  var roundList = games[randomRound].solutions;
+
   function roundPicker () {
-    var randomRound = Math.floor(Math.random() * games.length);
-    var roundScramble = games[randomRound].scramble;
-    var roundList = games[randomRound].solutions;
     $('#scramble').append(roundScramble);
-    // games.solutions.forEach(function(word) {
-    //   var numChar = word.length;
-    //   var spots = ' _ '.repeat(numChar);
-    //   $('#wordList').append('<li>' + spots +'</li>');
-    // });
+    roundList.forEach(function(word) {
+      var numChar = word.length;
+      var spots = ' _ '.repeat(numChar);
+      $('#wordList').append('<li>' + spots +'</li>');
+    });
     games.splice([randomRound], 1);
   }
 
   // creates underscore marks according to number of letters per word
-  // arraySolutions.forEach(function(word) {
+  // roundList.forEach(function(word) {
   //   var numChar = word.length;
   //   var spots = ' _ '.repeat(numChar);
   //   $('#wordList').append('<li>' + spots +'</li>');
   // });
 
-  // checks words across arraySolutions
+  // checks words across roundList
   function checkWord() {
     var choice = $('#input1').val().toUpperCase().replace(/\s/g, '');
-    for(var i = 0; i < arraySolutions.length; i++) {
-      if(choice == arraySolutions[i]) {
+    for(var i = 0; i < roundList.length; i++) {
+      if(choice == roundList[i]) {
         $('li').eq(i).html(choice);
         guessedCorrect.push(choice);
         setTimeout(winGame, 100);
@@ -81,7 +82,7 @@ $(document).ready(function() {
 
   // winGame function checks array length bc arrays can't be equal to each other
   function winGame() {
-    if(guessedCorrect.length == arraySolutions.length) {
+    if(guessedCorrect.length == roundList.length) {
       alert('Congratulations! You finished this round!');
     }
   }
