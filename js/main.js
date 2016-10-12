@@ -50,8 +50,6 @@ $(document).ready(function() {
     games.splice([randomRound], 1);
   };
 
-
-
   // checks words across roundList
   function checkWord() {
     var choice = $('#inputBox').val().toUpperCase().replace(/\s/g, '');
