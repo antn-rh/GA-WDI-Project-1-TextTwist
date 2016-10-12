@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   // appends scramble upon document load
-  var seconds = 121;
+  var seconds = 120;
   var randomRound = Math.floor(Math.random() * games.length);
   var roundScramble = games[randomRound].scramble;
   var roundList = games[randomRound].solutions;
@@ -25,8 +25,12 @@ $(document).ready(function() {
       };
     });
     roundPicker();
-    seconds = 121;
     $('#start').detach();
+    startTimer();
+  });
+
+  function startTimer() {
+    $('#timer').html('Time Left: 2:00');
     var timer = setInterval(function() {
       seconds--;
       var displaySeconds;
@@ -37,19 +41,17 @@ $(document).ready(function() {
       if(guessedCorrect.length == roundList.length) {
         clearInterval(timer);
       }
-      if(seconds == 120) {
-        displaySeconds = '2:00';
-      } else if(seconds > 60) {
+      if(seconds > 60) {
         var partialSeconds = seconds - 60;
-        displaySeconds = '1:' + partialSeconds;
+        displaySeconds = 'Time Left: 1:' + partialSeconds;
       } else if(seconds == 60) {
-        displaySeconds = '1:00';
+        displaySeconds = 'Time Left: 1:00';
       } else {
-        displaySeconds = '0:' + seconds;
+        displaySeconds = 'Time Left: 0:' + seconds;
       }
       $('#timer').html(displaySeconds);
     },1000);
-  });
+  }
 
   function roundPicker() {
     $('#scramble').html(roundScramble);
@@ -111,24 +113,14 @@ $(document).ready(function() {
   function winGame() {
     if(guessedCorrect.length == roundList.length) {
       var $winButton = $('<button id="next">Next Round</button>');
-      $('body').append($winButton);
+      $('#intro').append($winButton);
       $('#next').click(newRound);
     };
   };
 
   function newRound() {
-    seconds = 10;
-    var timer = setInterval(function() {
-      $('#timer').html(seconds);
-      seconds--;
-      if(seconds == -1) {
-        clearInterval(timer);
-        loseGame();
-      };
-      if(guessedCorrect.length == roundList.length) {
-        clearInterval(timer);
-      }
-    },1000);
+    seconds = 120;
+    startTimer();
     guessedCorrect = [];
     var nextRound = Math.floor(Math.random() * games.length);
     var nextScramble = games[nextRound].scramble;
