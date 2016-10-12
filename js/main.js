@@ -1,13 +1,26 @@
 $(document).ready(function() {
 
   // appends scramble upon document load
-  $(function() {
-    $('#scramble').append(roundPicker());
+  var seconds = 121;
+
+  $('#start').click(function() {
+    roundPicker();
+    seconds = 120;
+    $('#start').remove();
+    // while(seconds >= 0) {
+      var timer = setInterval(function() {
+        $('#timer').html(seconds);
+        seconds--;
+        if(seconds == -1) {
+          clearInterval(timer);
+        }
+      },1000);
+    // }
   });
 
-    var randomRound = Math.floor(Math.random() * games.length);
-    var roundScramble = games[randomRound].scramble;
-    var roundList = games[randomRound].solutions;
+  var randomRound = Math.floor(Math.random() * games.length);
+  var roundScramble = games[randomRound].scramble;
+  var roundList = games[randomRound].solutions;
 
   function roundPicker() {
     $('#scramble').append(roundScramble);
