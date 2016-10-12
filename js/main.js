@@ -80,21 +80,22 @@ $(document).ready(function() {
       var $winButton = $('<button id="next">Next Round</button>');
       $('body').append($winButton);
       $('#next').click(newRound);
-
     }
   };
 
   function newRound() {
+    guessedCorrect = [];
     var nextRound = Math.floor(Math.random() * games.length);
     var nextScramble = games[nextRound].scramble;
-    var nextList = games[nextRound].solutions;
+    roundList = games[nextRound].solutions;
     $('#scramble').html(nextScramble);
-    nextList.forEach(function(word) {
+    roundList.forEach(function(word) {
       var numChar = word.length;
       var spots = ' _ '.repeat(numChar);
       $('#wordList').html('<li>' + spots +'</li>');
     });
     games.splice([nextRound], 1);
+    $('#next').remove();
   };
 
 
