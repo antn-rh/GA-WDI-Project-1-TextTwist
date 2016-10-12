@@ -5,11 +5,11 @@ $(document).ready(function() {
     $('#scramble').append(roundPicker());
   });
 
-  var randomRound = Math.floor(Math.random() * games.length);
-  var roundScramble = games[randomRound].scramble;
-  var roundList = games[randomRound].solutions;
+    var randomRound = Math.floor(Math.random() * games.length);
+    var roundScramble = games[randomRound].scramble;
+    var roundList = games[randomRound].solutions;
 
-  function roundPicker () {
+  function roundPicker() {
     $('#scramble').append(roundScramble);
     roundList.forEach(function(word) {
       var numChar = word.length;
@@ -17,14 +17,8 @@ $(document).ready(function() {
       $('#wordList').append('<li>' + spots +'</li>');
     });
     games.splice([randomRound], 1);
-  }
+  };
 
-  // creates underscore marks according to number of letters per word
-  // roundList.forEach(function(word) {
-  //   var numChar = word.length;
-  //   var spots = ' _ '.repeat(numChar);
-  //   $('#wordList').append('<li>' + spots +'</li>');
-  // });
 
   // checks words across roundList
   function checkWord() {
@@ -39,13 +33,13 @@ $(document).ready(function() {
   // second for loop to check if choice == guessedCorrect
       for(var j = 0; j < guessedCorrect.length; j++) {
         if(choice == guessedCorrect[j]) {
-          $('#tryAgain').html("You already guessed this word. Try again!")
+          $('#tryAgain').html("You already guessed this word. Try again!");
           return;
         }
       }
     }
     $('#tryAgain').html("Invalid word. Try again!")
-  }
+  };
 
   // runs checkWord upon releasing ENTER key
   $('#input1').keyup(function(event) {
@@ -78,14 +72,31 @@ $(document).ready(function() {
       // console.log(newScramble);
       $('#scramble').html(newScramble);
       $('#input1').val("");
-    }
+    };
 
   // winGame function checks array length bc arrays can't be equal to each other
   function winGame() {
     if(guessedCorrect.length == roundList.length) {
-      alert('Congratulations! You finished this round!');
+      var $winButton = $('<button id="next">Next Round</button>');
+      $('body').append($winButton);
+      $('#next').click(newRound);
+
     }
-  }
+  };
+
+  function newRound() {
+    var nextRound = Math.floor(Math.random() * games.length);
+    var nextScramble = games[nextRound].scramble;
+    var nextList = games[nextRound].solutions;
+    $('#scramble').html(nextScramble);
+    nextList.forEach(function(word) {
+      var numChar = word.length;
+      var spots = ' _ '.repeat(numChar);
+      $('#wordList').html('<li>' + spots +'</li>');
+    });
+    games.splice([nextRound], 1);
+  };
+
 
 // end of document.ready function
 });
