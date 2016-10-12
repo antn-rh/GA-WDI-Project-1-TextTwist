@@ -25,11 +25,11 @@ $(document).ready(function() {
       };
     });
     roundPicker();
-    seconds = 10;
+    seconds = 121;
     $('#start').detach();
     var timer = setInterval(function() {
-      $('#timer').html(seconds);
       seconds--;
+      var displaySeconds;
       if(seconds == -1) {
         clearInterval(timer);
         loseGame();
@@ -37,6 +37,17 @@ $(document).ready(function() {
       if(guessedCorrect.length == roundList.length) {
         clearInterval(timer);
       }
+      if(seconds == 120) {
+        displaySeconds = '2:00';
+      } else if(seconds > 60) {
+        var partialSeconds = seconds - 60;
+        displaySeconds = '1:' + partialSeconds;
+      } else if(seconds == 60) {
+        displaySeconds = '1:00';
+      } else {
+        displaySeconds = '0:' + seconds;
+      }
+      $('#timer').html(displaySeconds);
     },1000);
   });
 
@@ -89,7 +100,7 @@ $(document).ready(function() {
   // winGame function checks array length bc arrays can't be equal to each other
   function loseGame() {
       var $gameOver = $('<button id="restart">Try Again</button>')
-      $('body').append($gameOver);
+      $('#intro').append($gameOver);
       $('#inputBox').remove();
       $('#restart').click(function() {
         $('#restart').remove();
