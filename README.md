@@ -25,8 +25,9 @@ I first used HTML5 and CSS3 to create a basic layout for my game. Using the orig
 ---
 **UNSOLVED PROBLEMS** 
 
----
+There is an issue where sometimes a round can be finished with one less word than what would normally be necessary (e.g, there are a total of 20 words but the round ends when 19 words are typed). However, this issue happens randomly and rarely so I am unable to pinpoint it. 
 
+---
 
 **User Stories**   
 >https://trello.com/b/lQ1UdB3k/project-1-practice
