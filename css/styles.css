@@ -89,7 +89,7 @@ button {
 }
 #score {
   font-size: 15px;
-  position: absolute;
+  position: fixed;
   background-color: rgba(200, 200, 255, .5);
   text-align: center;
   float: none;

@@ -58,7 +58,7 @@ $(document).ready(function() {
     roundList.forEach(function(word) {
       var numChar = word.length;
       var spots = ' _ '.repeat(numChar);
-      $('#wordList').html('<li>' + spots +'</li>');
+      $('#wordList').append('<li>' + spots +'</li>');
     });
     games.splice([randomRound], 1);
   };
@@ -111,7 +111,8 @@ $(document).ready(function() {
   };
 
   function winGame() {
-    if(guessedCorrect.length == roundList.length) {
+    // if(guessedCorrect.length == roundList.length) {
+    if(guessedCorrect.length == 1) {
       var $winButton = $('<button id="next">Next Round</button>');
       $('#intro').append($winButton);
       $('#next').click(newRound);
@@ -126,10 +127,11 @@ $(document).ready(function() {
     var nextScramble = games[nextRound].scramble;
     roundList = games[nextRound].solutions;
     $('#scramble').html(nextScramble);
+    $('#wordList').html("");
     roundList.forEach(function(word) {
       var numChar = word.length;
       var spots = ' _ '.repeat(numChar);
-      $('#wordList').html('<li>' + spots +'</li>');
+      $('#wordList').append('<li>' + spots +'</li>');
     });
     games.splice([nextRound], 1);
     $('#next').remove();
