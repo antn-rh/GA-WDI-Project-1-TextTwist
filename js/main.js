@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   // appends scramble upon document load
-  var seconds = 120;
+  var seconds = 75;
   var score = 0;
   var randomRound = Math.floor(Math.random() * games.length);
   var roundScramble = games[randomRound].scramble;
@@ -37,14 +37,23 @@ $(document).ready(function() {
       var displaySeconds;
       var partialSeconds = seconds - 60;
       if(seconds == 0) {
+        // guessedCorrect.forEach(function(word) {
+        //   if(word.length == 6 && seconds == 0) {
+        //     winGame();
+        //     clearInterval(timer);
+        //   } else if(seconds == 0) {
+        //     loseGame();
+        //     clearInterval(timer);
+        //   }
+        // });
         clearInterval(timer);
         loseGame();
       };
-      // if(guessedCorrect.length == roundList.length) {
-      if(guessedCorrect.length == 1) {
+      if(guessedCorrect.length == roundList.length) {
+      // if(guessedCorrect.length == 1) {
         clearInterval(timer);
       }
-      if(seconds > 60) {
+      if(seconds >= 70) {
         displaySeconds = 'Time Left: 1:' + partialSeconds;
       } else if(seconds == 60) {
         displaySeconds = 'Time Left: 1:00';
@@ -130,8 +139,8 @@ $(document).ready(function() {
   };
 
   function winGame() {
-    // if(guessedCorrect.length == roundList.length) {
-    if(guessedCorrect.length == 1) {
+    if(guessedCorrect.length == roundList.length) {
+    // if(guessedCorrect.length == 1) {
       var $winButton = $('<button id="next">Next Round</button>');
       $('#intro').append($winButton);
       $('#next').click(newRound);

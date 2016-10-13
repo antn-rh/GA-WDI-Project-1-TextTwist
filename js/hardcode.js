@@ -52,7 +52,7 @@ var games = [
     scramble: 'S E L A S E'
   },
   {
-    solutions: ['EEL', 'LEE', 'LET', 'SEE', 'SET', 'TEE', 'EELS', 'ELSE', 'LEES', 'LESS', 'LEST', 'LETS', 'SEES', 'TEES', 'SLEET', 'STEEL', 'SLEETS', 'STEELS'],
+    solutions: ['EEL', 'LEE', 'LET', 'SEE', 'SET', 'TEE', 'EELS', 'ELSE', 'LEES', 'LESS', 'LEST', 'LETS', 'SEES', 'SETS', 'TEES', 'SLEET', 'STEEL', 'SLEETS', 'STEELS'],
     // solutions: ['EEL'],
     scramble: 'E S L E S T'
   },
