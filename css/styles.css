@@ -2,10 +2,6 @@ body {
   font-family: futura;
   background-color: rgba(0, 150, 255, 1);
 }
-div {
-  border: 1px solid black;
-  border-radius: 8px;
-}
 p {
   font-size: 20px;
   margin: 20px;
@@ -17,32 +13,13 @@ button {
   margin: 20px;
 }
 
-
 #name {
-  font-size: 60px;
-  margin: 20px auto;
+  text-decoration: underline;
 }
 #instructionsTitle {
-  font-size: 20px;
+  font-size: 30px;
+  font-weight: 400;
 }
-#instructions {
-  font-size: 15px;
-  margin: 0 auto;
-  padding: 0px 100px 0px 100px;
-}
-
-#intro {
-  background-color: rgba(200, 200, 255, .5);
-  text-align: center;
-  box-shadow: 5px 5px 5px rgba(40, 40, 40, 0.5);;
-  width: 80%;
-  margin: 0 auto;
-}
-/*#container {
-  height: 400px;
-  width: 80%;
-  margin: 0 auto;
-}*/
 #typing {
   position: fixed;
   background-color: rgba(200, 200, 255, .5);

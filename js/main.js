@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   // appends scramble upon document load
-  var seconds = 120;
+  var seconds = 5;
   var score = 0;
   var randomRound = Math.floor(Math.random() * games.length);
   var roundScramble = games[randomRound].scramble;
@@ -10,14 +10,11 @@ $(document).ready(function() {
   // start will reveal words and start the timer
   $('#start').click(function() {
     $('#start').detach();
-    $('#typing').append('<input id="inputBox"></input>');
+    $('#typing').append('<input id="inputBox" class="form-control"></input>');
     gameStart();
     startTimer();
     enterKey();
     spaceKey();
-    $('#quit').click(function() {
-      window.location.reload();
-    });
   });
 
   function startTimer() {
@@ -158,7 +155,7 @@ $(document).ready(function() {
 
   // winGame function checks array length bc arrays can't be equal to each other
   function loseGame() {
-      var $gameOver = $('<button id="restart">Try Again</button>')
+      var $gameOver = $('<button id="restart" class="btn btn-primary btn-sm">Try Again</button>')
       $('#intro').append($gameOver);
       roundList.forEach(function(word, index) {
         if(!guessedCorrect.includes(word)) {
@@ -173,7 +170,7 @@ $(document).ready(function() {
   };
 
   function winGame() {
-    var $winButton = $('<button id="next">Next Round</button>');
+    var $winButton = $('<button id="next" class="btn btn-success btn-sm">Next Round</button>');
     $('#intro').append($winButton);
     $('#next').click(newRound);
     $('#inputBox').remove();
@@ -189,7 +186,7 @@ $(document).ready(function() {
     $('#scramble').html(roundScramble);
     $('#wordList').html("");
     $('#next').remove();
-    $('#typing').append('<input id="inputBox"></input>');
+    $('#typing').append('<input id="inputBox" class="form-control"></input>');
     addSpots();
     enterKey();
     spaceKey();
