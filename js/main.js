@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   // appends scramble upon document load
-  var seconds = 5;
+  var seconds = 120;
   var score = 0;
   var randomRound = Math.floor(Math.random() * games.length);
   var roundScramble = games[randomRound].scramble;
@@ -87,6 +87,7 @@ $(document).ready(function() {
     var choice = $('#inputBox').val().toUpperCase().replace(/\s/g, '');
     for(var i = 0; i < roundList.length; i++) {
       if(choice == roundList[i]) {
+        $('#tryAgain').css('visibility', 'hidden');
         $('li').eq(i).html(choice);
         guessedCorrect.push(choice);
         if(choice.length == 3) {
@@ -112,12 +113,12 @@ $(document).ready(function() {
   // second for loop to check if choice == guessedCorrect
       for(var j = 0; j < guessedCorrect.length; j++) {
         if(choice == guessedCorrect[j]) {
-          $('#tryAgain').html("You already guessed this word. Try again!");
+          $('#tryAgain').html("You already guessed this word. Try again!").css('visibility', 'visible');
           return;
         };
       };
     };
-    $('#tryAgain').html("Invalid word. Try again!")
+    $('#tryAgain').html("Invalid word. Try again!").css('visibility', 'visible');
   };
 
   // enter key runs checkWord and clears box + try again
