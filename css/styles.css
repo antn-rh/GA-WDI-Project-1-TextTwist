@@ -52,6 +52,16 @@ button {
   width: 40%;
   margin: 0 auto;
 }
+#tryAgain {
+  position: fixed;
+  background-color: rgba(200, 200, 255, .5);
+  text-align: center;
+  float: left;
+  box-shadow: 5px 5px 5px rgba(40, 40, 40, 0.5);;
+  width: 40%;
+  margin: 0 auto;
+  bottom: 100px;
+}
 #completed {
   font-size: 15px;
   position: relative;

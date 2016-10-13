@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   // appends scramble upon document load
-  var seconds = 75;
+  var seconds = 120;
   var score = 0;
   var randomRound = Math.floor(Math.random() * games.length);
   var roundScramble = games[randomRound].scramble;
@@ -12,21 +12,9 @@ $(document).ready(function() {
   $('#start').click(function() {
     $('#start').detach();
     $('#typing').append('<input id="inputBox"></input>');
-    // runs checkWord upon releasing ENTER key
-      $('#inputBox').keyup(function(event) {
-        if(event.keyCode == 13) {
-          // clear tryAgain html before checkWord()
-          $('#tryAgain').html("");
-          checkWord();
-          $('#inputBox').val("");
-        };
-      });
-      $('#inputBox').keyup(function(event) {
-        if(event.keyCode == 32) {
-          shuffler();
-        };
-      });
-    roundPicker();
+    enterKey();
+    spaceKey();
+    gameStart();
     startTimer();
   });
 
@@ -37,17 +25,23 @@ $(document).ready(function() {
       var displaySeconds;
       var partialSeconds = seconds - 60;
       if(seconds == 0) {
-        // guessedCorrect.forEach(function(word) {
-        //   if(word.length == 6 && seconds == 0) {
-        //     winGame();
-        //     clearInterval(timer);
-        //   } else if(seconds == 0) {
-        //     loseGame();
-        //     clearInterval(timer);
-        //   }
-        // });
+        var nextRound = false;
+        guessedCorrect.forEach(function(word) {
+          if(word.length == 6) {
+            nextRound = true;
+          }
+        });
         clearInterval(timer);
-        loseGame();
+        if(nextRound) {
+          winGame()
+          roundList.forEach(function(word, index) {
+            if(!guessedCorrect.includes(word)) {
+              $('li').eq(index).text(word).css('color', 'red');
+            };
+          });
+        } else {
+          loseGame();
+        }
       };
       if(guessedCorrect.length == roundList.length) {
       // if(guessedCorrect.length == 1) {
@@ -55,20 +49,24 @@ $(document).ready(function() {
       }
       if(seconds >= 70) {
         displaySeconds = 'Time Left: 1:' + partialSeconds;
-      } else if(seconds == 60) {
-        displaySeconds = 'Time Left: 1:00';
       } else if(seconds > 60 && seconds < 70) {
         displaySeconds = 'Time Left: 1:0' + partialSeconds;
-      } else if(seconds < 10){
-        displaySeconds = 'Time Left: 0:0' + seconds;
-      } else {
+      } else if(seconds == 60) {
+        displaySeconds = 'Time Left: 1:00';
+      } else if(seconds >= 10 && seconds < 60) {
         displaySeconds = 'Time Left: 0:' + seconds;
+      } else if(seconds < 10) {
+        displaySeconds = 'Time Left: 0:0' + seconds;
       }
-      $('#timer').html(displaySeconds);
+      if(seconds > 10) {
+        $('#timer').html(displaySeconds);
+      } else if(seconds <= 10) {
+        $('#timer').html(displaySeconds).css('color', 'red');
+      }
     },1000);
   }
 
-  function roundPicker() {
+  function gameStart() {
     $('#scramble').html(roundScramble);
     roundList.forEach(function(word) {
       var numChar = word.length;
@@ -98,7 +96,11 @@ $(document).ready(function() {
           score = score + 400;
           $('#score').html('Score: ' + score);
         }
-        setTimeout(winGame, 100);
+        setTimeout(function() {
+          if(guessedCorrect.length == roundList.length) {
+            winGame();
+          }
+        }, 100);
         return;
       }
   // second for loop to check if choice == guessedCorrect
@@ -112,6 +114,25 @@ $(document).ready(function() {
     $('#tryAgain').html("Invalid word. Try again!")
   };
 
+  // enter key runs checkWord and clears box + try again
+  function enterKey() {
+    $('#inputBox').keyup(function(event) {
+      if(event.keyCode == 13) {
+        $('#tryAgain').html("");
+        checkWord();
+        $('#inputBox').val("");
+      };
+    });
+  }
+  // spacebar shuffles
+  function spaceKey() {
+    $('#inputBox').keyup(function(event) {
+      if(event.keyCode == 32) {
+        shuffler();
+      };
+    });
+  }
+
   // shuffler
   function shuffler() {
     var strSplit = roundScramble.split(" ");
@@ -122,15 +143,20 @@ $(document).ready(function() {
       newScramble.push(strSplit[j]);
       strSplit.splice(j, 1);
     };
-      var newScramble = newScramble.join(" ");
-      $('#scramble').html(newScramble);
-      $('#inputBox').val("");
-    };
+    var newScramble = newScramble.join(" ");
+    $('#scramble').html(newScramble);
+    $('#inputBox').val("");
+  };
 
   // winGame function checks array length bc arrays can't be equal to each other
   function loseGame() {
       var $gameOver = $('<button id="restart">Try Again</button>')
       $('#intro').append($gameOver);
+      roundList.forEach(function(word, index) {
+        if(!guessedCorrect.includes(word)) {
+          $('li').eq(index).text(word).css('color', 'red');
+        };
+      });
       $('#inputBox').remove();
       $('#restart').click(function() {
         $('#restart').remove();
@@ -139,30 +165,31 @@ $(document).ready(function() {
   };
 
   function winGame() {
-    if(guessedCorrect.length == roundList.length) {
-    // if(guessedCorrect.length == 1) {
-      var $winButton = $('<button id="next">Next Round</button>');
-      $('#intro').append($winButton);
-      $('#next').click(newRound);
-    };
+    var $winButton = $('<button id="next">Next Round</button>');
+    $('#intro').append($winButton);
+    $('#next').click(newRound);
+    $('#inputBox').remove();
   };
 
   function newRound() {
     seconds = 120;
     startTimer();
     guessedCorrect = [];
-    var nextRound = Math.floor(Math.random() * games.length);
-    var nextScramble = games[nextRound].scramble;
-    roundList = games[nextRound].solutions;
-    $('#scramble').html(nextScramble);
+    randomRound = Math.floor(Math.random() * games.length);
+    roundScramble = games[randomRound].scramble;
+    roundList = games[randomRound].solutions;
+    $('#scramble').html(roundScramble);
     $('#wordList').html("");
     roundList.forEach(function(word) {
       var numChar = word.length;
       var spots = ' _ '.repeat(numChar);
       $('#wordList').append('<li>' + spots +'</li>');
     });
-    games.splice([nextRound], 1);
+    games.splice([randomRound], 1);
     $('#next').remove();
+    $('#typing').append('<input id="inputBox"></input>');
+    enterKey();
+    spaceKey();
   };
 
   // quit game reloads the page
