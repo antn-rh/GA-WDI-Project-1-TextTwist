@@ -18,6 +18,15 @@ The goal of the game is to make out as many words as possible from a random set 
 The minimum viable product for this game is the ability for the user to play a single round of Text Twist. This includes seeing a 6-letter scramble and being able to type words into an input field, with the game responding by either verifying that the typed word is correct or telling the user to try again. The round ends when the user is able to type all possible words from the scramble. 
 
 --- 
+**APPROACH**
+
+I first used HTML5 and CSS3 to create a basic layout for my game. Using the original Text Twist game as a guide, I proceeded to hardcode 20 different scrambles and solutions that I later used in my Javascript files. I used vanilla Javascript and jQuery in order to create functions that used	 the hardcode and allowed me to incorporate functionality and interactivity (e.g., typing a word and checking if it is valid or invalid). Upon reaching an MVP, I proceeded to add more dimensions to the game such as subsequent rounds, a timer, and a scoring system.  
+
+---
+**UNSOLVED PROBLEMS** 
+
+---
+
 
 **User Stories**   
 >https://trello.com/b/lQ1UdB3k/project-1-practice
