@@ -44,7 +44,7 @@ button {
   margin: 0 auto;
 }*/
 #typing {
-  position: relative;
+  position: fixed;
   background-color: rgba(200, 200, 255, .5);
   text-align: center;
   float: left;
@@ -67,6 +67,7 @@ button {
 }
 #completeTitle {
   font-size: 30px;
+  padding-top: 20px;
 }
 #inputBox {
   margin: 20px;

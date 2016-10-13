@@ -2,6 +2,7 @@ $(document).ready(function() {
 
   // appends scramble upon document load
   var seconds = 120;
+  var score = 0;
   var randomRound = Math.floor(Math.random() * games.length);
   var roundScramble = games[randomRound].scramble;
   var roundList = games[randomRound].solutions;
@@ -9,23 +10,23 @@ $(document).ready(function() {
 
   // start will reveal words and start the timer
   $('#start').click(function() {
+    $('#start').detach();
     $('#typing').append('<input id="inputBox"></input>');
     // runs checkWord upon releasing ENTER key
-    $('#inputBox').keyup(function(event) {
-      if(event.keyCode == 13) {
-        // clear tryAgain html before checkWord()
-        $('#tryAgain').html("");
-        checkWord();
-        $('#inputBox').val("");
-      };
-    });
-    $('#inputBox').keyup(function(event) {
-      if(event.keyCode == 32) {
-        shuffler();
-      };
-    });
+      $('#inputBox').keyup(function(event) {
+        if(event.keyCode == 13) {
+          // clear tryAgain html before checkWord()
+          $('#tryAgain').html("");
+          checkWord();
+          $('#inputBox').val("");
+        };
+      });
+      $('#inputBox').keyup(function(event) {
+        if(event.keyCode == 32) {
+          shuffler();
+        };
+      });
     roundPicker();
-    $('#start').detach();
     startTimer();
   });
 
@@ -34,18 +35,23 @@ $(document).ready(function() {
     var timer = setInterval(function() {
       seconds--;
       var displaySeconds;
-      if(seconds == -1) {
+      var partialSeconds = seconds - 60;
+      if(seconds == 0) {
         clearInterval(timer);
         loseGame();
       };
-      if(guessedCorrect.length == roundList.length) {
+      // if(guessedCorrect.length == roundList.length) {
+      if(guessedCorrect.length == 1) {
         clearInterval(timer);
       }
       if(seconds > 60) {
-        var partialSeconds = seconds - 60;
         displaySeconds = 'Time Left: 1:' + partialSeconds;
       } else if(seconds == 60) {
         displaySeconds = 'Time Left: 1:00';
+      } else if(seconds > 60 && seconds < 70) {
+        displaySeconds = 'Time Left: 1:0' + partialSeconds;
+      } else if(seconds < 10){
+        displaySeconds = 'Time Left: 0:0' + seconds;
       } else {
         displaySeconds = 'Time Left: 0:' + seconds;
       }
@@ -70,6 +76,19 @@ $(document).ready(function() {
       if(choice == roundList[i]) {
         $('li').eq(i).html(choice);
         guessedCorrect.push(choice);
+        if(choice.length == 3) {
+          score = score + 50;
+          $('#score').html('Score: ' + score);
+        } else if(choice.length == 4) {
+          score = score + 100;
+          $('#score').html('Score: ' + score);
+        } else if(choice.length == 5) {
+          score = score + 200;
+          $('#score').html('Score: ' + score);
+        } else {
+          score = score + 400;
+          $('#score').html('Score: ' + score);
+        }
         setTimeout(winGame, 100);
         return;
       }
