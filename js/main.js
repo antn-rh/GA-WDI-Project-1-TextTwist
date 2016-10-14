@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   // appends scramble upon document load
-  var seconds = 5;
+  var seconds = 120;
   var score = 0;
   var randomRound = Math.floor(Math.random() * games.length);
   var roundScramble = games[randomRound].scramble;
@@ -11,6 +11,9 @@ $(document).ready(function() {
   $('#start').click(function() {
     $('#start').detach();
     $('#typing').append('<input id="inputBox"></input>');
+    $('html,body').animate({
+        scrollTop: $("#wordList").offset().top
+      }, 'slow');
     gameStart();
     startTimer();
     enterKey();
@@ -181,7 +184,7 @@ $(document).ready(function() {
 
   function newRound() {
     guessedCorrect = [];
-    seconds = 5;
+    seconds = 120;
     startTimer();
     randomRound = Math.floor(Math.random() * games.length);
     roundScramble = games[randomRound].scramble;
@@ -190,6 +193,7 @@ $(document).ready(function() {
     $('#wordList').html("");
     $('#next').remove();
     $('#typing').append('<input id="inputBox"></input>');
+    $('#tryAgain').css('visibility', 'hidden');
     addSpots();
     enterKey();
     spaceKey();
