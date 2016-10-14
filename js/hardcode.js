@@ -22,7 +22,7 @@ var games = [
     scramble: 'D E Z O B O'
   },
   {
-    solutions: ['ALE', 'ARE', 'BAR', 'BRA', 'EAR', 'ERA', 'LAB', 'LEA', 'REV', 'ABLE', 'AVER', 'BALE', 'BARE', 'BEAR', 'EARL', 'LAVE', 'RAVE', 'REAL', 'VALE', 'BLARE', 'BRAVE', 'RAVEL', 'VERBAL'],
+    solutions: ['ALE', 'ARE', 'BAR', 'BRA', 'EAR', 'ERA', 'LAB', 'LEA', 'REV', 'ABLE', 'AVER', 'BALE', 'BARE', 'BEAR', 'EARL', 'LAVE', 'RAVE', 'REAL', 'VALE', 'VEAL', 'BLARE', 'BRAVE', 'RAVEL', 'VERBAL'],
     // solutions: ['ALE'],
     scramble: 'L A B V R E'
   },

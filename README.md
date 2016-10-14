@@ -11,6 +11,7 @@ The goal of the game is to make out as many words as possible from a random set 
 2. CSS3
 3. Javascript
 4. jQuery
+5. Bootstrap 3 
 
 ---
 **MVP**
@@ -21,6 +22,12 @@ The minimum viable product for this game is the ability for the user to play a s
 **APPROACH**
 
 I first used HTML5 and CSS3 to create a basic layout for my game. Using the original Text Twist game as a guide, I proceeded to hardcode 20 different scrambles and solutions that I later used in my Javascript files. I used vanilla Javascript and jQuery in order to create functions that used	 the hardcode and allowed me to incorporate functionality and interactivity (e.g., typing a word and checking if it is valid or invalid). Upon reaching an MVP, I proceeded to add more dimensions to the game such as subsequent rounds, a timer, and a scoring system.  
+
+---
+**INSTALLATION INSTRUCTIONS**
+
+1. Clone this repo  
+2. Open index.html in your browser
 
 ---
 **UNSOLVED PROBLEMS** 

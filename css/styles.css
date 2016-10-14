@@ -1,16 +1,8 @@
 body {
-  font-family: futura;
-  background-color: rgba(0, 150, 255, 1);
-}
-p {
-  font-size: 20px;
-  margin: 20px;
+  background-color: blue;
 }
 li {
   list-style-type: none;
-}
-button {
-  margin: 20px;
 }
 
 #name {
@@ -21,37 +13,24 @@ button {
   font-weight: 400;
 }
 #typing {
-  position: fixed;
-  background-color: rgba(200, 200, 255, .5);
   text-align: center;
   float: left;
-  box-shadow: 5px 5px 5px rgba(40, 40, 40, 0.5);;
   width: 40%;
+  height: 140px;
   margin: 0 auto;
-  padding: 0px 0px 10px 0px;
 }
 #tryAgain {
-  position: fixed;
-  background-color: rgba(200, 200, 255, .5);
+  position: relative;
   text-align: center;
-  float: left;
-  box-shadow: 5px 5px 5px rgba(40, 40, 40, 0.5);;
-  width: 22%;
-  margin: 0 auto;
-  left: 100px;
-  bottom: 50px;
-  padding: 10px;
   visibility: hidden;
+  left: 85px;
 }
 #completed {
-  font-size: 15px;
   position: relative;
-  background-color: rgba(200, 200, 255, .5);
   text-align: center;
   float: right;
-  box-shadow: 5px 5px 5px rgba(40, 40, 40, 0.5);;
   width: 40%;
-  margin: 0 auto;
+  bottom: 160px;
 }
 #scramble {
   font-size: 40px;
@@ -67,28 +46,19 @@ button {
   columns: 100px 2;
 }
 #timer {
-  font-size: 15px;
-  position: fixed;
-  background-color: rgba(200, 200, 255, .5);
+  position: relative;
+  left: 10px;
   text-align: center;
-  float: none;
-  box-shadow: 5px 5px 5px rgba(40, 40, 40, 0.5);;
   width: 170px;
   height: 50px;
-  left: 43%;
-  margin: 0px 0px 40px 0px;
-  line-height: 50px;
+  line-height: 10px;
 }
 #score {
-  font-size: 15px;
-  position: fixed;
-  background-color: rgba(200, 200, 255, .5);
+  position: relative;
+  left: 10px;
   text-align: center;
-  float: none;
-  box-shadow: 5px 5px 5px rgba(40, 40, 40, 0.5);;
   width: 170px;
   height: 50px;
-  left: 43%;
-  margin: 60px 0px 40px 0px;
-  line-height: 50px;
+  margin: 0px 0px 40px 0px;
+  line-height: 10px;
 }

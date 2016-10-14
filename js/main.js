@@ -10,7 +10,7 @@ $(document).ready(function() {
   // start will reveal words and start the timer
   $('#start').click(function() {
     $('#start').detach();
-    $('#typing').append('<input id="inputBox" class="form-control"></input>');
+    $('#typing').append('<input id="inputBox"></input>');
     gameStart();
     startTimer();
     enterKey();
@@ -155,13 +155,15 @@ $(document).ready(function() {
 
   // winGame function checks array length bc arrays can't be equal to each other
   function loseGame() {
-      var $gameOver = $('<button id="restart" class="btn btn-primary btn-sm">Try Again</button>')
+      var $gameOver = $('<button id="restart" class="btn btn-primary">Try Again</button>')
       $('#intro').append($gameOver);
       roundList.forEach(function(word, index) {
         if(!guessedCorrect.includes(word)) {
           $('li').eq(index).text(word).css('color', 'red');
         };
       });
+      $('.modal-body').html('You failed to complete the round. Your final score: ' + score);
+      $('#loseModal').modal('show');
       $('#inputBox').remove();
       $('#restart').click(function() {
         $('#restart').remove();
@@ -170,15 +172,16 @@ $(document).ready(function() {
   };
 
   function winGame() {
-    var $winButton = $('<button id="next" class="btn btn-success btn-sm">Next Round</button>');
+    var $winButton = $('<button id="next" class="btn btn-success">Next Round</button>');
     $('#intro').append($winButton);
     $('#next').click(newRound);
     $('#inputBox').remove();
+    $('#winModal').modal('show');
   };
 
   function newRound() {
     guessedCorrect = [];
-    seconds = 120;
+    seconds = 5;
     startTimer();
     randomRound = Math.floor(Math.random() * games.length);
     roundScramble = games[randomRound].scramble;
@@ -186,7 +189,7 @@ $(document).ready(function() {
     $('#scramble').html(roundScramble);
     $('#wordList').html("");
     $('#next').remove();
-    $('#typing').append('<input id="inputBox" class="form-control"></input>');
+    $('#typing').append('<input id="inputBox"></input>');
     addSpots();
     enterKey();
     spaceKey();

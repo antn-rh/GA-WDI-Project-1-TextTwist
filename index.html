@@ -8,44 +8,71 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron" id="intro">
+        <h1 id="name">Text Twist</h1><br>
+          <p> <span id="instructionsTitle">Instructions</span><br>
+          The goal of the game is to make out as many words as possible from a random set of six letters. Use your keyboard to   type your words into the input field and press ENTER to check if it is valid or not. You can also press SPACEBAR to   shuffle the letters. You will pass the round if you type all possible words within the time limit or if you find any of the 6-letter words!</p>
+          <p><button id="start" class="btn btn-primary">START</button></p>
+      </div><!-- jumbotron -->
+    </div><!-- container -->
+
+      <div class="modal fade" id="winModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <p>Congratulations!</p>
+            </div><!-- modal-header -->
+            <div class="modal-body">
+              <p>You passed this round!</p>
+            </div><!-- modal-body -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div><!-- modal-footer -->
+          </div><!-- modal-content -->
+        </div><!-- modal-dialog -->
+      </div><!-- modal fade -->
+
+      <div class="modal fade" id="loseModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <p>Nice Try!</p>
+            </div><!-- modal-header -->
+            <div class="modal-body">
+              <p>You failed to complete the round.</p>
+            </div><!-- modal-body -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div><!-- modal-footer -->
+          </div><!-- modal-content -->
+        </div><!-- modal-dialog -->
+      </div><!-- modal fade -->
+
+    <div class="container">
+      <div id="typing" class="well">
+        <span id="scramble"></span><br>
+      </div>
+
+      <div class="col-md-3">
+        <div id="timer" class="well">Time Left: 2:00</div>
+        <div id="score" class="well">Score: 0</div>
+      </div>
+
+      <div id="completed" class="well col-md-3">
+        <span id="completeTitle">COMPLETED WORDS</span>
+        <ul id="wordList"></ul>
+      </div>
+
+      <div id="tryAgain" class="well col-md-3"></div>
+    </div><!-- container -->
+
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/hardcode.js"></script>
-  </head>
-  <body>
-    <!-- Text Twist instructions -->
-    <!-- <div id="intro">
-      <h1 id="name">Text Twist</h1>
-      <h2 id="instructions"> <span id="instructionsTitle">Instructions</span>
-      The goal of the game is to make out as many words as possible from a random set of six letters. Use your keyboard to type your words into the input field and press ENTER to check if it is valid or not. You can also press SPACEBAR to shuffle the letters. You will pass the round if you type all possible words or if you find any of the 6-letter words!</h2>
-      <button id="start" class="btn btn-primary btn-sm">START</button>
-    </div> -->
-    <div class="container">
-      <div class="jumbotron" id="intro">
-        <h1 id="name">Text Twist</h1><br>
-          <p> <span id="instructionsTitle">Instructions</span><br>
-          The goal of the game is to make out as many words as possible from a random set of six letters. Use your keyboard to   type your words into the input field and press ENTER to check if it is valid or not. You can also press SPACEBAR to   shuffle the letters. You will pass the round if you type all possible words or if you find any of the 6-letter words!</p>
-          <p><button id="start" class="btn btn-primary btn-sm">START</button></p>
-      </div><!-- jumbotron -->
-    </div><!-- container -->
-
-
-      <div id="typing">
-
-        <span id="scramble"></span>
-
-      </div>
-
-      <div id="tryAgain"></div>
-
-      <div id="completed">
-        <span id="completeTitle">COMPLETED WORDS</span>
-        <ul id="wordList"></ul>
-      </div>
-
-      <div id="timer">Time Left: 2:00</div>
-      <div id="score">Score: 0</div>
   </body>
 </html>
