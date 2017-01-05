@@ -1,4 +1,9 @@
-#TEXT TWIST
+#GA WDI Project 1: Text Twist Clone
+---
+**The Project**
+
+For my first project at General Assembly, the assignment was to create a game using HTML, CSS, JavaScript, and jQuery. I chose to replicate an already existing game called Text Twist. 
+
 ---
 **Game Instructions**  
 
