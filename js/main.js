@@ -184,7 +184,7 @@ $(document).ready(function() {
 
   function newRound() {
     guessedCorrect = [];
-    seconds = 5;
+    seconds = 120;
     startTimer();
     randomRound = Math.floor(Math.random() * games.length);
     roundScramble = games[randomRound].scramble;
