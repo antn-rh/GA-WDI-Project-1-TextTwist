@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   // appends scramble upon document load
-  var seconds = 120;
+  var seconds = 5;
   var score = 0;
   var randomRound = Math.floor(Math.random() * games.length);
   var roundScramble = games[randomRound].scramble;
@@ -184,7 +184,7 @@ $(document).ready(function() {
 
   function newRound() {
     guessedCorrect = [];
-    seconds = 120;
+    seconds = 5;
     startTimer();
     randomRound = Math.floor(Math.random() * games.length);
     roundScramble = games[randomRound].scramble;

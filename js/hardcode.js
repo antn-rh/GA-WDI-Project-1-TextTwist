@@ -1,3 +1,10 @@
+// to do list:
+// responsive design
+// generate solutions instead of hardcode?
+// sounds
+// UI improvements
+// fix issue where you can win round with 1 less word than solutions.list
+
 var guessedCorrect = [];
 
 var games = [
