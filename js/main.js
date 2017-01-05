@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   // appends scramble upon document load
-  var seconds = 5;
+  var seconds = 120;
   var score = 0;
   var randomRound = Math.floor(Math.random() * games.length);
   var roundScramble = games[randomRound].scramble;
