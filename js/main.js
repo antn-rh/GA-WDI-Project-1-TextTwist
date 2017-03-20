@@ -9,69 +9,80 @@ $(document).ready(function() {
 
   // start will reveal words and start the timer
   $('#start').click(function() {
-    $('#start').detach();
-    $('#typing').append('<input id="inputBox"></input>');
-    $('html,body').animate({
-        scrollTop: $("#wordList").offset().top
-      }, 'slow');
     gameStart();
     startTimer();
     enterKey();
     spaceKey();
   });
 
+  function gameStart() {
+    addSpots();
+    $('#scramble').html(roundScramble);
+    $('#start').detach();
+    $('#typing').append('<input id="inputBox"></input>');
+    $('html,body').animate({
+      scrollTop: $("#wordList").offset().top
+    }, 'slow');
+  };
+
   function startTimer() {
     $('#timer').html('Time Left: 2:00').css('color', 'black');
     var timer = setInterval(function() {
       seconds--;
-      var displaySeconds;
+      var timeRemaining;
       var partialSeconds = seconds - 60;
+
       if(seconds == 0) {
-        var nextRound = false;
-        guessedCorrect.forEach(function(word) {
-          if(word.length == 6) {
-            nextRound = true;
-          }
-        });
         clearInterval(timer);
-        if(nextRound) {
-          winGame()
-          roundList.forEach(function(word, index) {
-            if(!guessedCorrect.includes(word)) {
-              $('li').eq(index).text(word).css('color', 'red');
-            };
-          });
-        } else {
-          loseGame();
-        }
+        checkGameStatus();
       };
+
       if(guessedCorrect.length == roundList.length) {
       // if(guessedCorrect.length == 1) {
         clearInterval(timer);
       }
-      if(seconds >= 70) {
-        displaySeconds = 'Time Left: 1:' + partialSeconds;
-      } else if(seconds > 60 && seconds < 70) {
-        displaySeconds = 'Time Left: 1:0' + partialSeconds;
-      } else if(seconds == 60) {
-        displaySeconds = 'Time Left: 1:00';
-      } else if(seconds >= 10 && seconds < 60) {
-        displaySeconds = 'Time Left: 0:' + seconds;
-      } else if(seconds < 10) {
-        displaySeconds = 'Time Left: 0:0' + seconds;
-      }
-      if(seconds > 10) {
-        $('#timer').html(displaySeconds).css('color', 'black');
-      } else if(seconds <= 10) {
-        $('#timer').html(displaySeconds).css('color', 'red');
-      }
+
+      showTimeRemaining(seconds, timeRemaining, partialSeconds);
     },1000);
   }
 
-  function gameStart() {
-    $('#scramble').html(roundScramble);
-    addSpots();
-  };
+  function checkGameStatus() {
+    var nextRound = false;
+    guessedCorrect.forEach(function(word) {
+      if(word.length == 6) {
+        nextRound = true;
+      }
+    });
+    if(nextRound) {
+      winGame()
+      roundList.forEach(function(word, index) {
+        if(!guessedCorrect.includes(word)) {
+          $('li').eq(index).text(word).css('color', 'red');
+        };
+      });
+    } else {
+      loseGame();
+    }
+  }
+
+  function showTimeRemaining(seconds, timeRemaining, partialSeconds) {
+    if(seconds >= 70) {
+      displaySeconds = 'Time Left: 1:' + partialSeconds;
+    } else if(seconds > 60 && seconds < 70) {
+      displaySeconds = 'Time Left: 1:0' + partialSeconds;
+    } else if(seconds == 60) {
+      displaySeconds = 'Time Left: 1:00';
+    } else if(seconds >= 10 && seconds < 60) {
+      displaySeconds = 'Time Left: 0:' + seconds;
+    } else if(seconds < 10) {
+      displaySeconds = 'Time Left: 0:0' + seconds;
+    }
+    if(seconds > 10) {
+      $('#timer').html(displaySeconds).css('color', 'black');
+    } else if(seconds <= 10) {
+      $('#timer').html(displaySeconds).css('color', 'red');
+    }
+  }
 
   function addSpots() {
     roundList.forEach(function(word) {
@@ -87,22 +98,11 @@ $(document).ready(function() {
     var choice = $('#inputBox').val().toUpperCase().replace(/\s/g, '');
     for(var i = 0; i < roundList.length; i++) {
       if(choice == roundList[i]) {
+        guessedCorrect.push(choice);
         $('#tryAgain').css('visibility', 'hidden');
         $('li').eq(i).html(choice);
-        guessedCorrect.push(choice);
-        if(choice.length == 3) {
-          score = score + 50;
-          $('#score').html('Score: ' + score);
-        } else if(choice.length == 4) {
-          score = score + 100;
-          $('#score').html('Score: ' + score);
-        } else if(choice.length == 5) {
-          score = score + 200;
-          $('#score').html('Score: ' + score);
-        } else {
-          score = score + 400;
-          $('#score').html('Score: ' + score);
-        }
+        addPoints(choice);
+
         setTimeout(function() {
           if(guessedCorrect.length == roundList.length) {
             winGame();
@@ -120,6 +120,19 @@ $(document).ready(function() {
     };
     $('#tryAgain').html("Invalid word. Try again!").css('visibility', 'visible');
   };
+
+  function addPoints(choice) {
+    if (choice.length === 3) {
+      score += 50;
+    } else if (choice.length === 4) {
+      score += 100;
+    } else if (choice.length === 5) {
+      score += 200;
+    } else {
+      score += 400;
+    }
+    $('#score').html('Score: ' + score);
+  }
 
   // enter key runs checkWord and clears box + try again
   function enterKey() {
@@ -143,18 +156,20 @@ $(document).ready(function() {
 
   // shuffler
   function shuffler() {
-    var strSplit = roundScramble.split(" ");
+    var scrambleArray = roundScramble.split(' ');
+    var scrambleLength = roundScramble.length;
     var newScramble = [];
-    var strLength = strSplit.length;
-    for(var i = 0; i < strLength; i++) {
-      var j = Math.floor(Math.random() * strSplit.length);
-      newScramble.push(strSplit[j]);
-      strSplit.splice(j, 1);
-    };
-    var newScramble = newScramble.join(" ");
+
+    for (var i = 0; i < scrambleLength; i++) {
+      var randomIndex = Math.floor(Math.random() * scrambleArray.length);
+      newScramble.push(scrambleArray[randomIndex]);
+      scrambleArray.splice(randomIndex, 1);
+    }
+
+    var newScramble = newScramble.join(' ');
     $('#scramble').html(newScramble);
-    $('#inputBox').val("");
-  };
+    $('#inputBox').val('');
+  }
 
   // winGame function checks array length bc arrays can't be equal to each other
   function loseGame() {
